@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 
-@Component
+//@Component
 public class GlobalService {
     private final UserService userService;
     private static final String URL = "jdbc:postgresql://localhost:5432/home_work_from_backup";
