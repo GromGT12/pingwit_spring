@@ -1,5 +1,6 @@
-package Repositories;
+package home_work_38.repository;
 
+import home_work_38.model.Product;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
