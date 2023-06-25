@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+//@Component
 public class UserRepository {
     private final DataSource dataSource;
 

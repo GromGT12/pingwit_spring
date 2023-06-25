@@ -1,11 +1,13 @@
 package pl.pingwit.springbootfirst;
 
-import com.zaxxer.hikari.HikariDataSource;
+//import com.zaxxer.hikari.HikariDataSource;
 import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+
+//import static org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration.createDataSource;
 
 //@Component
 public class GlobalService {
@@ -18,30 +20,31 @@ public class GlobalService {
         this.userService = userService;
     }
 
-    @PostConstruct
+    //@PostConstruct
     public void init() {
         userService.printUser();
     }
-
-    @Bean
-    private static DataSource createDataSource() {
-        HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl(URL);
-        dataSource.setUsername(NAME);
-        dataSource.setPassword(PASSWORD);
-        return dataSource;
-    }
-
-    public static void main(String[] args) {
-        DataSource dataSource = createDataSource();
-
-        UserRepository userRepository = new UserRepository(dataSource);
-
-        UserService userService = new UserService(userRepository);
-
-        userService.printUser();
-    }
 }
+
+//    @Bean
+//    private static DataSource createDataSource() {
+//        HikariDataSource dataSource = new HikariDataSource();
+//        dataSource.setJdbcUrl(URL);
+//        dataSource.setUsername(NAME);
+//        dataSource.setPassword(PASSWORD);
+//        return dataSource;
+//    }
+
+//    public static void main(String[] args) {
+//        DataSource dataSource = createDataSource();
+//
+//        UserRepository userRepository = new UserRepository(dataSource);
+//
+//        UserService userService = new UserService(userRepository);
+//
+//        userService.printUser();
+//    }
+//}
 
 
 
