@@ -32,5 +32,11 @@ public class ProductRepository {
     public void delete(Integer productId) {
         products.remove(productId);
     }
+
+    public Integer product(Product productToCreate){
+    products.put(productToCreate.id(), productToCreate);
+    return productToCreate.id();
+    }
+
 }
 

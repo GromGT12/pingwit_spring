@@ -2,6 +2,7 @@ package home_work_38.controller;
 
 import home_work_38.model.Product;
 import home_work_38.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -9,6 +10,10 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+
+    @Value("${application.greeting}")
+    private String greeting;
+
     private final ProductRepository productRepository;
 
     public ProductController(ProductRepository productRepository) {
@@ -30,6 +35,22 @@ public class ProductController {
         productRepository.delete(id);
         return "correct";
     }
+
+
+    @PostMapping
+    public Integer productCreate(@RequestBody Product productToCreate) {
+        return productRepository.product(productToCreate);
+    }
+
+    @GetMapping("/maks")
+    public String requestProducts() {
+        return """
+                cars""";
+    }
+
+    @GetMapping("/greet")
+    public String greet() {
+        return greeting;
 
     @GetMapping("/maks")
     public String requestProducts() {
