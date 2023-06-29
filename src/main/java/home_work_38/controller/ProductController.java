@@ -31,18 +31,13 @@ public class ProductController {
         productRepository.delete(id);
         return "correct";
     }
+
     //ДЗ 39
     @PostMapping
     public Integer productCreate(@RequestBody Product productToCreate) {
         return productRepository.product(productToCreate);
     }
-    //ДЗ 39
-    @GetMapping("/maks")
-    public String requestProducts() {
-        return """
-                cars""";
 
-    }
     //ДЗ 39
     @Value("${application.greeting}")
     private String greeting;
@@ -50,6 +45,19 @@ public class ProductController {
     @GetMapping("/greet")
     public String greet() {
         return greeting;
+
+    @GetMapping("/maks")
+    public String requestProducts() {
+        return """
+                          "<html><body><h1>
+                          "Iphone 14Pro", "Smartphone", 1200.89));
+                          "Iphone 12", "Smartphone", 600.56));
+                          "MacBookAir", "Laptop", 1500.66));
+                          "Iphone SE 2020", "smartphone", 400.78));
+                          "AirPods", "headphones", 200.44));
+                           !</h1></body></html>";
+                """;
+
     }
 }
 
