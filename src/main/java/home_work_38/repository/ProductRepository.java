@@ -33,10 +33,10 @@ public class ProductRepository {
         products.remove(productId);
     }
 
-    //ДЗ 39
     public Integer product(Product productToCreate){
     products.put(productToCreate.id(), productToCreate);
     return productToCreate.id();
     }
+
 }
 

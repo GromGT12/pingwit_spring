@@ -10,8 +10,10 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+
     @Value("${application.greeting}")
     private String greeting;
+
     private final ProductRepository productRepository;
 
     public ProductController(ProductRepository productRepository) {
@@ -34,6 +36,7 @@ public class ProductController {
         return "correct";
     }
 
+
     @PostMapping
     public Integer productCreate(@RequestBody Product productToCreate) {
         return productRepository.product(productToCreate);
@@ -48,6 +51,18 @@ public class ProductController {
     @GetMapping("/greet")
     public String greet() {
         return greeting;
+
+    @GetMapping("/maks")
+    public String requestProducts() {
+        return """
+                          "<html><body><h1>
+                          "Iphone 14Pro", "Smartphone", 1200.89));
+                          "Iphone 12", "Smartphone", 600.56));
+                          "MacBookAir", "Laptop", 1500.66));
+                          "Iphone SE 2020", "smartphone", 400.78));
+                          "AirPods", "headphones", 200.44));
+                           !</h1></body></html>";
+                """;
     }
 }
 
