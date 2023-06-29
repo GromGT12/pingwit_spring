@@ -10,6 +10,8 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+    @Value("${application.greeting}")
+    private String greeting;
     private final ProductRepository productRepository;
 
     public ProductController(ProductRepository productRepository) {
@@ -31,21 +33,17 @@ public class ProductController {
         productRepository.delete(id);
         return "correct";
     }
-    //ДЗ 39
+
     @PostMapping
     public Integer productCreate(@RequestBody Product productToCreate) {
         return productRepository.product(productToCreate);
     }
-    //ДЗ 39
+
     @GetMapping("/maks")
     public String requestProducts() {
         return """
                 cars""";
-
     }
-    //ДЗ 39
-    @Value("${application.greeting}")
-    private String greeting;
 
     @GetMapping("/greet")
     public String greet() {
