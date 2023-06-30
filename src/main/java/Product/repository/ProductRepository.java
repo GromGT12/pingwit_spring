@@ -21,8 +21,14 @@ public class ProductRepository {
         products.put(5, new Product(5, "AirPods", "headphones", 200.44));
     }
 
+
     public Product getById(Integer id) {
-        return products.get(id);
+      Product product = products.get(id);
+      if(product==null){
+          throw new RuntimeException("Product not found");
+      }else{
+          return product;
+      }
     }
 
     public Collection<Product> getAll() {
@@ -33,8 +39,7 @@ public class ProductRepository {
         products.remove(productId);
     }
 
-    //ДЗ 39
-    public Integer product(Product productToCreate){
+    public Integer createProduct(Product productToCreate){
     products.put(productToCreate.id(), productToCreate);
     return productToCreate.id();
     }

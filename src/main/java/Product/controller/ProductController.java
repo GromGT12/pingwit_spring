@@ -1,55 +1,50 @@
 package Product.controller;
 
+import Product.controller.dto.ProductDTO;
+import Product.convertor.ProductConvertor;
 import Product.model.Product;
 import Product.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-    @Value("${application.greeting}")
-    private String greeting;
+    private final ProductConvertor productConvertor;
     private final ProductRepository productRepository;
 
-    public ProductController(ProductRepository productRepository) {
+    public ProductController(ProductConvertor productConvertor, ProductRepository productRepository) {
+        this.productConvertor = productConvertor;
         this.productRepository = productRepository;
     }
 
+    //доастали по id hibarenate entity наш потенциальный и пользователям вернули сконвертированый объект
     @GetMapping("/{id}")
-    public Product getById(@PathVariable Integer id) {
-        return productRepository.getById(id);
+    public ProductDTO getById(@PathVariable Integer id) {
+        Product product = productRepository.getById(id);
+        return productConvertor.convertToDto(product);
     }
 
     @GetMapping
-    public Collection<Product> getAll() {
-        return productRepository.getAll();
-    }
-
-    @DeleteMapping("/{id}")
-    public String deleteById(@PathVariable Integer id) {
-        productRepository.delete(id);
-        return "correct";
+    public List<ProductDTO> getAll() {
+        return productConvertor.convertorToDto(productRepository.getAll());
     }
 
     @PostMapping
-    public Integer productCreate(@RequestBody Product productToCreate) {
-        return productRepository.product(productToCreate);
+    public Integer createProduct(@RequestBody ProductDTO productToCreate) {
+        Product product = productConvertor.convertEntity(productToCreate);
+        return productRepository.createProduct(product);
     }
 
-    @GetMapping("/maks")
-    public String requestProducts() {
-        return """
-                cars""";
-    }
-
-    @GetMapping("/greet")
-    public String greet() {
-        return greeting;
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable Integer id) {
+        productRepository.delete(id);
+        return "correct";
     }
 }
+
+
 
 
 
