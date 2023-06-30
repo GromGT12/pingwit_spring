@@ -1,7 +1,7 @@
-package home_work_38.controller;
+package Product.controller;
 
-import home_work_38.model.Product;
-import home_work_38.repository.ProductRepository;
+import Product.model.Product;
+import Product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 

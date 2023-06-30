@@ -1,6 +1,6 @@
-package home_work_38.repository;
+package Product.repository;
 
-import home_work_38.model.Product;
+import Product.model.Product;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
