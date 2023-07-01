@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Component
 public class ProductConvertor {
     public Product convertEntity(ProductDTO source) {
@@ -17,14 +16,17 @@ public class ProductConvertor {
                 source.getName(),
                 source.getPrice());
     }
+
     public ProductDTO convertToDto(Product source) {
-        return convertToDto(source);
+        return productDTO(source);
     }
+
     public List<ProductDTO> convertorToDto(Collection<Product> source) {
         return source.stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
+
     private ProductDTO productDTO(Product source) {
         ProductDTO result = new ProductDTO();
         result.setId(source.id());

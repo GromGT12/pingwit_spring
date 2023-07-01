@@ -1,9 +1,7 @@
 package Product.controller;
 
 import Product.controller.dto.ProductDTO;
-import Product.convertor.ProductConvertor;
-import Product.model.Product;
-import Product.repository.ProductRepository;
+import Product.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,38 +9,37 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-    private final ProductConvertor productConvertor;
-    private final ProductRepository productRepository;
 
-    public ProductController(ProductConvertor productConvertor, ProductRepository productRepository) {
-        this.productConvertor = productConvertor;
-        this.productRepository = productRepository;
+    public final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
-    //доастали по id hibarenate entity наш потенциальный и пользователям вернули сконвертированый объект
     @GetMapping("/{id}")
     public ProductDTO getById(@PathVariable Integer id) {
-        Product product = productRepository.getById(id);
-        return productConvertor.convertToDto(product);
+        return productService.getById(id);
+
     }
 
     @GetMapping
     public List<ProductDTO> getAll() {
-        return productConvertor.convertorToDto(productRepository.getAll());
+        return productService.getAllProduct();
     }
 
     @PostMapping
     public Integer createProduct(@RequestBody ProductDTO productToCreate) {
-        Product product = productConvertor.convertEntity(productToCreate);
-        return productRepository.createProduct(product);
+        return productService.createProduct(productToCreate);
+
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Integer id) {
-        productRepository.delete(id);
-        return "correct";
+    public void delete(@PathVariable Integer id) {
+        productService.deleteById(id);
+
     }
 }
+
 
 
 
