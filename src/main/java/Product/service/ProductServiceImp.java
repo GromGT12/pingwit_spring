@@ -4,7 +4,7 @@ import Product.controller.dto.ProductDTO;
 import Product.convertor.ProductConvertor;
 import Product.model.Product;
 import Product.repository.model.InMemoryProductRepository;
-import Product.validator.fffff.ProductValidator;
+import Product.validator.ProductValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
