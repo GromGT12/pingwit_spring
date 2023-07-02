@@ -9,6 +9,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import static com.sun.beans.introspect.PropertyInfo.Name.description;
+
 
 @Repository
 public class DBProductRepositoryImp implements ProductRepository{
@@ -56,9 +58,10 @@ public class DBProductRepositoryImp implements ProductRepository{
         List<Product> products = new ArrayList<>();
         try (Connection connection = dataSource.getConnection()) {
 
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM products WHERE id = ?");
+            String condition = "%" + description + "%";
 
-            preparedStatement.setInt(1, id);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM products WHERE description LIKE ? ");
+            preparedStatement.setString(1, condition);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -76,11 +79,10 @@ public class DBProductRepositoryImp implements ProductRepository{
         List<Product> products = new ArrayList<>();
         try (Connection connection = dataSource.getConnection()) {
 
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM products WHERE description  = ?");
-
-            preparedStatement.setString(1, description);
+            String condition = "%" + description + "%";
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM products WHERE description LIKE ? ");
+            preparedStatement.setString(1, condition);
             ResultSet rs = preparedStatement.executeQuery();
-
             while (rs.next()) {
                 Product product = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4));
                 products.add(product);
