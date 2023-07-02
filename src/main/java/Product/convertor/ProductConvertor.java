@@ -23,7 +23,7 @@ public class ProductConvertor {
 
     public List<ProductDTO> convertorToDto(Collection<Product> source) {
         return source.stream()
-                .map(this::convertToDto)
+                .map(this::productDTO)
                 .collect(Collectors.toList());
     }
 

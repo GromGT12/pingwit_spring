@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-@Repository
+//@Repository
 public class InMemoryProductRepository {
     private final Map<Integer, Product> products = new HashMap<>();
 

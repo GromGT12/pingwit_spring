@@ -4,6 +4,7 @@ import Product.controller.dto.ProductDTO;
 import Product.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,6 +21,10 @@ public class ProductController {
     public ProductDTO getById(@PathVariable Integer id) {
         return productService.getById(id);
 
+    }
+    @GetMapping("/product")
+    public List<ProductDTO> searchByName(@RequestParam String name){
+        return productService.searchByName(name);
     }
 
     @GetMapping
@@ -38,6 +43,7 @@ public class ProductController {
         productService.deleteById(id);
 
     }
+
 }
 
 

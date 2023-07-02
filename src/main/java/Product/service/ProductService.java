@@ -12,4 +12,6 @@ public interface ProductService {
     Integer createProduct(ProductDTO productDTO);
 
     void deleteById(Integer id);
+
+    List<ProductDTO> searchByName(String name);
 }
