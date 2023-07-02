@@ -16,7 +16,7 @@ public interface ProductRepository {
 
     List<Product> createProduct(Product productToCreate);
 
-    List<Product> searchById(Integer id);
+    List<Product> searchBy(Integer id);
 
     List<Product> searchProductById(Integer id);
 

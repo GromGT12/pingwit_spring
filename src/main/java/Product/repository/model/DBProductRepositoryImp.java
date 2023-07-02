@@ -46,6 +46,7 @@ public class DBProductRepositoryImp implements ProductRepository {
     public void delete(Integer productId) {
 
     }
+
     @Override
     public void deleteProductId(Integer id) {
         try (Connection connection = dataSource.getConnection()) {
@@ -75,7 +76,7 @@ public class DBProductRepositoryImp implements ProductRepository {
     }
 
     @Override
-    public List<Product> searchById(Integer id) {
+    public List<Product> searchBy(Integer id) {
         return null;
     }
 
@@ -83,9 +84,11 @@ public class DBProductRepositoryImp implements ProductRepository {
     public List<Product> searchProductById(Integer id) {
         List<Product> products = new ArrayList<>();
         try (Connection connection = dataSource.getConnection()) {
-            Statement statement = connection.createStatement();
 
-            ResultSet rs = statement.executeQuery("SELECT * from products WHERE id=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM products WHERE id = ?");
+            preparedStatement.setInt(1, id);
+
+            ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 Product product = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4));
