@@ -1,6 +1,7 @@
 package Product.service;
 
 import Product.controller.dto.ProductDTO;
+import Product.model.Product;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface ProductService {
 
     ProductDTO getById(Integer id);
 
-    Integer createProduct(ProductDTO productDTO);
+    List<Product> createProduct(ProductDTO productDTO);
 
     void deleteById(Integer id);
 

@@ -1,6 +1,7 @@
 package Product.controller;
 
 import Product.controller.dto.ProductDTO;
+import Product.model.Product;
 import Product.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +10,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-
     public final ProductService productService;
 
     public ProductController(ProductService productService) {
@@ -19,7 +19,6 @@ public class ProductController {
     @GetMapping("/{id}")
     public ProductDTO getById(@PathVariable Integer id) {
         return productService.getById(id);
-
     }
 
     @GetMapping("/products")
@@ -33,7 +32,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public Integer createProduct(@RequestBody ProductDTO productToCreate) {
+    public List<Product> createProduct(@RequestBody ProductDTO productToCreate) {
         return productService.createProduct(productToCreate);
 
     }

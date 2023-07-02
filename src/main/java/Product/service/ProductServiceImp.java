@@ -33,17 +33,15 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public Integer createProduct(ProductDTO productToCreate) {
+    public List<Product> createProduct(ProductDTO productToCreate) {
         productValidator.validateProduct(productToCreate);
         Product product = productConvertor.convertEntity(productToCreate);
         return productRepository.createProduct(product);
-
     }
 
     @Override
     public void deleteById(Integer id) {
-       productRepository.delete(id);
-
+        productRepository.delete(id);
     }
 
     @Override
@@ -56,10 +54,10 @@ public class ProductServiceImp implements ProductService {
     public List<ProductDTO> searchByName(String name) {
         return null;
     }
+
     @Override
     public List<ProductDTO> searchByDescription(String description) {
         List<Product> products = productRepository.searchByDescription(description);
         return productConvertor.convertorToDto(products);
     }
-
 }

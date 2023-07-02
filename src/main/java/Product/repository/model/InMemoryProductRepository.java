@@ -2,7 +2,6 @@ package Product.repository.model;
 
 import Product.model.Product;
 import jakarta.annotation.PostConstruct;
-import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -20,7 +19,6 @@ public class InMemoryProductRepository {
         products.put(4, new Product(4, "Iphone SE 2020", "smartphone", 400.78));
         products.put(5, new Product(5, "AirPods", "headphones", 200.44));
     }
-
 
     public Product getById(Integer id) {
         Product product = products.get(id);
