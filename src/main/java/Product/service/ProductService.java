@@ -13,5 +13,9 @@ public interface ProductService {
 
     void deleteById(Integer id);
 
+    List<ProductDTO> searchById(Integer id);
+
     List<ProductDTO> searchByName(String name);
+
+    List<ProductDTO> searchByDescription(String description);
 }

@@ -4,7 +4,6 @@ import Product.controller.dto.ProductDTO;
 import Product.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,8 +21,9 @@ public class ProductController {
         return productService.getById(id);
 
     }
-    @GetMapping("/product")
-    public List<ProductDTO> searchByName(@RequestParam String name){
+
+    @GetMapping("/products")
+    public List<ProductDTO> searchByName(@RequestParam String name) {
         return productService.searchByName(name);
     }
 
@@ -44,9 +44,16 @@ public class ProductController {
 
     }
 
+    @GetMapping("/maks")
+    public List<ProductDTO> searchById(@RequestParam Integer id) {
+        return productService.searchById(id);
+    }
+
+    @GetMapping("/desc")
+    public List<ProductDTO> searchByDescription(@RequestParam String description) {
+        return productService.searchByDescription(description);
+    }
 }
-
-
 
 
 
