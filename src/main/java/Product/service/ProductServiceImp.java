@@ -46,7 +46,7 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public List<ProductDTO> searchById(Integer id) {
-        List<Product> products = productRepository.searchBy(id);
+        List<Product> products = productRepository.searchById(id);
         return productConvertor.convertorToDto(products);
     }
 

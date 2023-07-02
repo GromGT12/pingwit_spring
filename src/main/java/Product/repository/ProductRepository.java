@@ -12,11 +12,13 @@ public interface ProductRepository {
 
     void delete(Integer productId);
 
+    void deleteProductId(Integer id);
+
     List<Product> createProduct(Product productToCreate);
 
-    List<Product> searchBy(Integer id);
-
     List<Product> searchById(Integer id);
+
+    List<Product> searchProductById(Integer id);
 
     List<Product> searchByDescription(String description);
 }

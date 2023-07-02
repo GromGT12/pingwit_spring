@@ -43,7 +43,11 @@ public class DBProductRepositoryImp implements ProductRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Integer productId) {
+
+    }
+    @Override
+    public void deleteProductId(Integer id) {
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM products WHERE id = ?");
             preparedStatement.setInt(1, id);
@@ -52,7 +56,6 @@ public class DBProductRepositoryImp implements ProductRepository {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public List<Product> createProduct(Product productToCreate) {
@@ -72,13 +75,12 @@ public class DBProductRepositoryImp implements ProductRepository {
     }
 
     @Override
-    public List<Product> searchBy(Integer id) {
+    public List<Product> searchById(Integer id) {
         return null;
     }
 
-
     @Override
-    public List<Product> searchById(Integer id) {
+    public List<Product> searchProductById(Integer id) {
         List<Product> products = new ArrayList<>();
         try (Connection connection = dataSource.getConnection()) {
             Statement statement = connection.createStatement();
