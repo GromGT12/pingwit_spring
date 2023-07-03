@@ -51,13 +51,9 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public List<ProductDTO> searchByName(String name) {
-        return null;
-    }
-
-    @Override
     public List<ProductDTO> searchByDescription(String description) {
         List<Product> products = productRepository.searchByDescription(description);
         return productConvertor.convertorToDto(products);
     }
+
 }

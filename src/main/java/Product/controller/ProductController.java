@@ -23,7 +23,7 @@ public class ProductController {
 
     @GetMapping("/products")
     public List<ProductDTO> searchByName(@RequestParam String name) {
-        return productService.searchByName(name);
+        return productService.searchByDescription(name);
     }
 
     @GetMapping
