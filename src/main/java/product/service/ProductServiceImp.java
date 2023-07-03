@@ -1,60 +1,58 @@
 package product.service;
 
+import org.springframework.transaction.annotation.Transactional;
 import product.controller.dto.ProductDTO;
 import product.convertor.ProductConvertor;
 import product.model.Product;
-import product.repository.ProductRepository;
+import product.repository.SpringDataProductRepository;
 import product.validator.ProductValidator;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
 public class ProductServiceImp implements ProductService {
     private final ProductConvertor productConvertor;
-    private final ProductRepository productRepository;
+    private final SpringDataProductRepository springDataProductRepository;
     private final ProductValidator productValidator;
 
-    public ProductServiceImp(ProductConvertor productConvertor, ProductRepository productRepository, ProductValidator productValidator) {
+    public ProductServiceImp(ProductConvertor productConvertor, SpringDataProductRepository springDataProductRepository, ProductValidator productValidator) {
         this.productConvertor = productConvertor;
-        this.productRepository = productRepository;
+        this.springDataProductRepository = springDataProductRepository;
         this.productValidator = productValidator;
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ProductDTO> getAllProduct() {
-        return productConvertor.convertorToDto(productRepository.getAll());
+        return productConvertor.convertorToDto((Product) springDataProductRepository.findAll());
     }
 
     @Override
     public ProductDTO getById(Integer id) {
-        List<Product> product = Collections.singletonList(productRepository.searchProductById(id));
-        return (ProductDTO) product;
+        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("product not found" + id));
+        return (ProductDTO) productConvertor.convertorToDto(product);
     }
 
     @Override
-    public Product createProduct(ProductDTO productToCreate) {
+    public Integer createProduct(ProductDTO productToCreate) {
         productValidator.validateProduct(productToCreate);
         Product product = productConvertor.convertEntity(productToCreate);
-        return productRepository.createProduct(product);
+        Product saveProduct = springDataProductRepository.save(product);
+        return saveProduct.getId();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public void deleteById(Integer id) {
-        productRepository.deleteProductId(id);
-    }
-
-    @Override
-    public List<ProductDTO> searchById(Integer id) {
-        Product products = productRepository.searchProductById(id);
-        return productConvertor.convertorToDto(Collections.singleton(products));
+        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("product not found" + id));
+        springDataProductRepository.delete(product);
     }
 
     @Override
     public List<ProductDTO> searchByDescription(String description) {
-       List<Product> products = productRepository.searchByDescription(description);
-        return productConvertor.convertorToDto(products);
+       List<Product> productsList = springDataProductRepository.findAllByNameOrderByName(description);
+        return productConvertor.convertorToDto((Product) productsList);
     }
 
 }
