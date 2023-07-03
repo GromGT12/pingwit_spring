@@ -1,8 +1,8 @@
-package Product.repository.model;
+package product.repository.model;
 
-import Product.model.Product;
-import Product.repository.ProductRepository;
 import org.springframework.stereotype.Repository;
+import product.model.Product;
+import product.repository.ProductRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -50,7 +50,7 @@ public class DBProductRepositoryImp implements ProductRepository {
     }
 
     @Override
-    public List<Product> createProduct(Product productToCreate) {
+    public Product createProduct(Product productToCreate) {
         try (Connection connection = dataSource.getConnection()) {
 
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO products (id, name, description, price) VALUES (?, ?, ?, ?)");
@@ -67,8 +67,8 @@ public class DBProductRepositoryImp implements ProductRepository {
     }
 
     @Override
-    public List<Product> searchProductById(Integer id) {
-        List<Product> products = new ArrayList<>();
+    public Product searchProductById(Integer id) {
+        Product products = null;
         try (Connection connection = dataSource.getConnection()) {
 
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM products WHERE id = ?");
@@ -77,8 +77,7 @@ public class DBProductRepositoryImp implements ProductRepository {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                Product product = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4));
-                products.add(product);
+                products = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4));
             }
         } catch (SQLException e) {
             e.printStackTrace();

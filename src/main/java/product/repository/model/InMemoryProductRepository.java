@@ -1,6 +1,6 @@
-package Product.repository.model;
+package product.repository.model;
 
-import Product.model.Product;
+import product.model.Product;
 import jakarta.annotation.PostConstruct;
 
 import java.util.Collection;
@@ -23,7 +23,7 @@ public class InMemoryProductRepository {
     public Product getById(Integer id) {
         Product product = products.get(id);
         if (product == null) {
-            throw new RuntimeException("Product not found");
+            throw new RuntimeException("product not found");
         } else {
             return product;
         }

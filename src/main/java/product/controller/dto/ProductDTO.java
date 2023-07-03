@@ -1,4 +1,4 @@
-package Product.controller.dto;
+package product.controller.dto;
 
 import java.util.Objects;
 

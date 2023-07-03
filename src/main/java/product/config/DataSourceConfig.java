@@ -1,4 +1,4 @@
-package Product.config;
+package product.config;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
