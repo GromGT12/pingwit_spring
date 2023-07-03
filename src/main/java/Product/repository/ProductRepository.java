@@ -6,17 +6,12 @@ import java.util.Collection;
 import java.util.List;
 
 public interface ProductRepository {
-    Product getById(Integer id);
 
     Collection<Product> getAll();
 
-    void delete(Integer productId);
-
-    void deleteProductId(Integer id);
+    void deleteProductId(Integer productId);
 
     List<Product> createProduct(Product productToCreate);
-
-    List<Product> searchBy(Integer id);
 
     List<Product> searchProductById(Integer id);
 

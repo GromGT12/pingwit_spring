@@ -43,14 +43,14 @@ public class ProductController {
 
     }
 
-    @GetMapping("/maks")
-    public List<ProductDTO> searchProductById(@RequestParam Integer id) {
-        return productService.searchById(id);
-    }
-
-    @GetMapping("/desc")
+    @GetMapping("/search")
     public List<ProductDTO> searchByDescription(@RequestParam String description) {
         return productService.searchByDescription(description);
+    }
+
+    @GetMapping("/searchId")
+    public List<ProductDTO> searchById(@RequestParam Integer id) {
+        return productService.searchById(id);
     }
 }
 

@@ -28,8 +28,8 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public ProductDTO getById(Integer id) {
-        Product product = productRepository.getById(id);
-        return productConvertor.convertToDto(product);
+        List<Product> product = productRepository.searchProductById(id);
+        return (ProductDTO) product;
     }
 
     @Override
@@ -41,12 +41,12 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public void deleteById(Integer id) {
-        productRepository.delete(id);
+        productRepository.deleteProductId(id);
     }
 
     @Override
     public List<ProductDTO> searchById(Integer id) {
-        List<Product> products = productRepository.searchBy(id);
+        List<Product> products = productRepository.searchProductById(id);
         return productConvertor.convertorToDto(products);
     }
 
