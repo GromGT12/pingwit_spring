@@ -1,8 +1,10 @@
-package product.controller.dto;
+package Product.Controller.ProductDTO;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ProductDTO {
+public class ProductDTO implements Serializable {
+
     private Integer id;
     private String name;
     private String description;

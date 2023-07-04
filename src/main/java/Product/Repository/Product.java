@@ -1,4 +1,4 @@
-package product.model;
+package Product.Repository;
 
 import jakarta.persistence.*;
 
@@ -74,4 +74,3 @@ public class Product {
                 '}';
     }
 }
-
