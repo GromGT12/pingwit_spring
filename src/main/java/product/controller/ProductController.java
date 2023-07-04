@@ -27,7 +27,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product createProduct(@RequestBody ProductDTO productToCreate) {
+    public Integer createProduct(@RequestBody ProductDTO productToCreate) {
         return productService.createProduct(productToCreate);
 
     }

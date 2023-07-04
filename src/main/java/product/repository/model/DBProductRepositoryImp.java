@@ -50,9 +50,8 @@ public class DBProductRepositoryImp implements ProductRepository {
     }
 
     @Override
-    public Product createProduct(Product productToCreate) {
+    public Integer createProduct(Product productToCreate) {
         try (Connection connection = dataSource.getConnection()) {
-
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO products (id, name, description, price) VALUES (?, ?, ?, ?)");
             preparedStatement.setInt(1, productToCreate.id());
             preparedStatement.setString(2, productToCreate.name());
@@ -63,26 +62,25 @@ public class DBProductRepositoryImp implements ProductRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        //return null;
+        return productToCreate.id();
     }
 
     @Override
     public Product searchProductById(Integer id) {
-        Product products = null;
+        Product product = null;
         try (Connection connection = dataSource.getConnection()) {
-
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM products WHERE id = ?");
             preparedStatement.setInt(1, id);
-
             ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next()) {
-                products = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4));
+            if (rs.next()) {
+                product = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return products;
+
+        return product;
     }
 
     @Override

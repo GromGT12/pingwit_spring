@@ -10,10 +10,9 @@ public interface ProductService {
 
     ProductDTO getById(Integer id);
 
-    Product createProduct(ProductDTO productDTO);
+    Integer createProduct(ProductDTO productDTO);
 
     void deleteById(Integer id);
 
-    List<ProductDTO> searchById(Integer id);
     List<ProductDTO> searchByDescription(String description);
 }

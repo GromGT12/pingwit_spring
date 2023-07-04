@@ -29,12 +29,13 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public ProductDTO getById(Integer id) {
-        List<Product> product = Collections.singletonList(productRepository.searchProductById(id));
-        return (ProductDTO) product;
+        //List<Product> product = Collections.singletonList(productRepository.searchProductById(id));
+        Product product = productRepository.searchProductById(id);
+        return productConvertor.convertToDto(product);
     }
 
     @Override
-    public Product createProduct(ProductDTO productToCreate) {
+    public Integer createProduct(ProductDTO productToCreate) {
         productValidator.validateProduct(productToCreate);
         Product product = productConvertor.convertEntity(productToCreate);
         return productRepository.createProduct(product);
@@ -45,11 +46,6 @@ public class ProductServiceImp implements ProductService {
         productRepository.deleteProductId(id);
     }
 
-    @Override
-    public List<ProductDTO> searchById(Integer id) {
-        Product products = productRepository.searchProductById(id);
-        return productConvertor.convertorToDto(Collections.singleton(products));
-    }
 
     @Override
     public List<ProductDTO> searchByDescription(String description) {

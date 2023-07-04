@@ -11,7 +11,7 @@ public interface ProductRepository {
 
     void deleteProductId(Integer productId);
 
-    Product createProduct(Product productToCreate);
+    Integer createProduct(Product productToCreate);
 
     Product searchProductById(Integer id);
 
