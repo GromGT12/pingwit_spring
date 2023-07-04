@@ -4,12 +4,13 @@ import org.springframework.stereotype.Component;
 import product.controller.dto.ProductDTO;
 import product.model.Product;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
 public class ProductConvertor {
-    public Product convertEntity(ProductDTO source) {
+    public Product convertToEntity(ProductDTO source) {
         return new Product(source.getId(),
                 source.getDescription(),
                 source.getName(),
@@ -17,16 +18,16 @@ public class ProductConvertor {
     }
 
     public ProductDTO convertToDto(Product source) {
-        return productDTO(source);
+        return convertProductToDto(source);
     }
 
-    public List<ProductDTO> convertorToDto(Product source) {
+    public List<ProductDTO> convertToDto(Collection<Product> source) {
         return source.stream()
-                .map(this::productDTO)
+                .map(this::convertProductToDto)
                 .collect(Collectors.toList());
     }
 
-    private ProductDTO productDTO(Product source) {
+    private ProductDTO convertProductToDto(Product source) {
         ProductDTO result = new ProductDTO();
         result.setId(source.getId());
         result.setName(source.getName());

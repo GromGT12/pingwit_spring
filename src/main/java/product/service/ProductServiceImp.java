@@ -25,19 +25,21 @@ public class ProductServiceImp implements ProductService {
     @Override
     @Transactional(readOnly = true)
     public List<ProductDTO> getAllProduct() {
-        return productConvertor.convertorToDto((Product) springDataProductRepository.findAll());
+        return productConvertor.convertToDto((List<Product>) springDataProductRepository.findAll());
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ProductDTO getById(Integer id) {
         Product product = springDataProductRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("product not found" + id));
-        return (ProductDTO) productConvertor.convertorToDto(product);
+        return productConvertor.convertToDto(product);
     }
 
     @Override
+    @Transactional
     public Integer createProduct(ProductDTO productToCreate) {
         productValidator.validateProduct(productToCreate);
-        Product product = productConvertor.convertEntity(productToCreate);
+        Product product = productConvertor.convertToEntity(productToCreate);
         Product saveProduct = springDataProductRepository.save(product);
         return saveProduct.getId();
     }
@@ -50,9 +52,10 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ProductDTO> searchByDescription(String description) {
        List<Product> productsList = springDataProductRepository.findAllByNameOrderByName(description);
-        return productConvertor.convertorToDto((Product) productsList);
+        return productConvertor.convertToDto((List<Product>) productsList);
     }
 
 }
