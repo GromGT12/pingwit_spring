@@ -17,17 +17,17 @@ public class ProductConvertor {
                 source.getPrice());
     }
 
-    public ProductDTO convertToDto(Product source) {
-        return convertProductToDto(source);
+    public ProductDTO convertToDto(List<Product> source) {
+        return productDTO(source);
     }
 
     public List<ProductDTO> convertToDto(Collection<Product> source) {
         return source.stream()
-                .map(this::convertProductToDto)
+                .map(this::productDTO)
                 .collect(Collectors.toList());
     }
 
-    private ProductDTO convertProductToDto(Product source) {
+    private ProductDTO productDTO(Product source) {
         ProductDTO result = new ProductDTO();
         result.setId(source.getId());
         result.setName(source.getName());
