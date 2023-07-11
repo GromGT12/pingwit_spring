@@ -6,6 +6,7 @@ import Product.Convertor.ProductConverter;
 import Product.Repository.PagingProductRepository;
 import Product.Repository.Product;
 import Product.Repository.SpringDataProductRepository;
+import Product.exсeption.PingwitNotFoundExсeption;
 import Product.validator.ProductValidator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -41,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional(readOnly = true)
     public ProductDTO getById(Integer id) {
-        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Product not found" + id));
+        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new PingwitNotFoundExсeption("Product not found" + id));
         return productConverter.convertToDto(product);
     }
 
@@ -57,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void deleteProduct(Integer id) {
-        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Product not found" + id));
+        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new PingwitNotFoundExсeption("Product not found" + id));
         springDataProductRepository.delete(product);
 
     }

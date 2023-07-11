@@ -2,6 +2,7 @@ package Product.Controller;
 import Product.Controller.ProductDTO.ProductDTO;
 import Product.Controller.ProductDTO.ProductFilterDTO;
 import Product.Service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -42,20 +43,19 @@ public class ProductController {
     }
 
     @PostMapping
-    public Integer createProduct(@RequestBody ProductDTO productToCreate) {
+    public Integer createProduct(@RequestBody @Valid ProductDTO productToCreate) {
         return productService.createProduct(productToCreate);}
 
     @PutMapping("/{id}")
-    public ProductDTO update(@PathVariable Integer id, @RequestBody ProductDTO productToUpdate) {
+    public ProductDTO update(@PathVariable Integer id, @RequestBody @Valid ProductDTO productToUpdate) {
         return productService.updateProduct(id, productToUpdate);}
 
     @PostMapping("/search")
-    public List<ProductDTO> search(@RequestBody ProductFilterDTO filter) {
+    public List<ProductDTO> search(@RequestBody @Valid ProductFilterDTO filter) {
         return productService.search(filter);
     }
     @GetMapping("/page")
     public Page<ProductDTO> getPaged(Pageable pageable) {
         return productService.getPage(pageable);
     }
-
 }
