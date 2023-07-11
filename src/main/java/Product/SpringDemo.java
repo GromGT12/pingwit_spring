@@ -1,4 +1,4 @@
-package home_work_38;
+package Product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
