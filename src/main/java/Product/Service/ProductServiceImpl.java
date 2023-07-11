@@ -73,7 +73,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO updateProduct(Integer id, ProductDTO productToUpdate) {
-        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Product not found" + id));
+        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new PingwitNotFoundExсeption("Product not found" + id));
         Product entityToUpdate = productConverter.convertToEntity(productToUpdate);
         entityToUpdate.setId(id);
         Product updateEntity = springDataProductRepository.save(entityToUpdate);

@@ -10,7 +10,6 @@ import java.util.Objects;
 
 public class ProductDTO implements Serializable {
 
-
     private Integer id;
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z]+$")
