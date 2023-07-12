@@ -51,7 +51,7 @@ public class ProductController {
         return productService.updateProduct(id, productToUpdate);}
 
     @PostMapping("/search")
-    public List<ProductDTO> search(@RequestBody @Valid ProductFilterDTO filter) {
+    public List<ProductDTO> search(@RequestBody  ProductFilterDTO filter) {
         return productService.search(filter);
     }
     @GetMapping("/page")
