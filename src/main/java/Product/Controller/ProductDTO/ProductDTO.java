@@ -1,12 +1,21 @@
 package Product.Controller.ProductDTO;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 public class ProductDTO implements Serializable {
-
     private Integer id;
+    @Pattern(regexp = "^[^$]*$")
+    @Min(2)
+    @Max(200)
     private String name;
+    @Pattern(regexp = "^[^$]*$")
+    @Min(2)
+    @Max(500)
     private String description;
     private Double price;
 
