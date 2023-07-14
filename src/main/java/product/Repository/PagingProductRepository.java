@@ -1,4 +1,4 @@
-package Product.Repository;
+package product.Repository;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 

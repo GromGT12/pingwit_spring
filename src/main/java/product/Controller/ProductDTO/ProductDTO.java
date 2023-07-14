@@ -1,4 +1,4 @@
-package Product.Controller.ProductDTO;
+package product.Controller.ProductDTO;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

@@ -1,18 +1,20 @@
-package Product.Service;
+package product.Service;
 
-import Product.Controller.ProductDTO.ProductDTO;
-import Product.Controller.ProductDTO.ProductFilterDTO;
-import Product.Convertor.ProductConverter;
-import Product.Repository.PagingProductRepository;
-import Product.Repository.Product;
-import Product.Repository.SpringDataProductRepository;
-import Product.exсeption.PingwitNotFoundExсeption;
-import Product.validator.ProductValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import product.Controller.ProductDTO.ProductDTO;
+import product.Controller.ProductDTO.ProductFilterDTO;
+import product.Convertor.ProductConverter;
+import product.Repository.PagingProductRepository;
+import product.Repository.Product;
+import product.Repository.SpringDataProductRepository;
+import product.exсeption.PingwitNotFoundExсeption;
+import product.validator.ProductValidator;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
     private final SpringDataProductRepository springDataProductRepository;
     private final ProductConverter productConverter;
     private final ProductValidator productValidator;
@@ -35,6 +38,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional(readOnly = true)
     public List<ProductDTO> getAllProducts() {
+        LOGGER.warn("A request has been received to retrieve all users");
         Collection<Product> all = springDataProductRepository.findAll();
         return productConverter.convertToDto(all);
     }
@@ -42,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional(readOnly = true)
     public ProductDTO getById(Integer id) {
-        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new PingwitNotFoundExсeption("Product not found" + id));
+        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new PingwitNotFoundExсeption("product not found" + id));
         return productConverter.convertToDto(product);
     }
 
@@ -58,7 +62,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void deleteProduct(Integer id) {
-        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new PingwitNotFoundExсeption("Product not found" + id));
+        LOGGER.debug("Deleting product with ID");
+        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new PingwitNotFoundExсeption("product not found" + id));
         springDataProductRepository.delete(product);
 
     }
@@ -67,13 +72,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional(readOnly = true)
     public List<ProductDTO> searchByDescription(String description) {
+        LOGGER.info("Searching products by description");
         List<Product> productsList = springDataProductRepository.findAllByDescription(description);
         return productConverter.convertToDto(productsList);
     }
 
     @Override
     public ProductDTO updateProduct(Integer id, ProductDTO productToUpdate) {
-        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new PingwitNotFoundExсeption("Product not found" + id));
+        Product product = springDataProductRepository.findById(id).orElseThrow(() -> new PingwitNotFoundExсeption("product not found" + id));
         Product entityToUpdate = productConverter.convertToEntity(productToUpdate);
         entityToUpdate.setId(id);
         Product updateEntity = springDataProductRepository.save(entityToUpdate);
