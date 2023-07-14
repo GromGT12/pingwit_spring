@@ -1,4 +1,4 @@
-package Product.Repository;
+package product.Repository;
 
 import jakarta.persistence.*;
 
@@ -66,7 +66,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

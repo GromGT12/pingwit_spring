@@ -1,6 +1,6 @@
-package Product.config.exceptionhandling;
+package product.config.exceptionhandling;
 
-import Product.exсeption.PingwitNotFoundExсeption;
+import product.exсeption.PingwitNotFoundExсeption;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,8 +15,7 @@ public class RestExceptionHandler {
     public ResponseEntity<String> handleNotFoundException(PingwitNotFoundExсeption e) {
         return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
     }
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         return ResponseEntity.status(BAD_REQUEST).body(e.getMessage());
     }

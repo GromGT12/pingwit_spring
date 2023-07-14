@@ -1,8 +1,10 @@
-package Product.Controller;
-import Product.Controller.ProductDTO.ProductDTO;
-import Product.Controller.ProductDTO.ProductFilterDTO;
-import Product.Service.ProductService;
+package product.Controller;
+import product.Controller.ProductDTO.ProductDTO;
+import product.Controller.ProductDTO.ProductFilterDTO;
+import product.Service.ProductService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
     private final ProductService productService;
 
@@ -27,17 +31,20 @@ public class ProductController {
 
     @GetMapping("/search")
     public List<ProductDTO> searchByDescription(@RequestParam String description) {
+        LOGGER.info("Searching products by description");
         return productService.searchByDescription(description);
     }
 
     @GetMapping
     public Collection<ProductDTO> getAll() {
+        LOGGER.warn("A request has been received to retrieve all users");
         return productService.getAllProducts();
 
     }
 
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Integer id) {
+        LOGGER.debug("Deleting product with ID");
         productService.deleteProduct(id);
 
     }
