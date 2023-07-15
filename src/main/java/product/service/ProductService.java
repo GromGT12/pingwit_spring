@@ -1,7 +1,7 @@
-package Product.Service;
+package product.service;
 
-import Product.Controller.ProductDTO.ProductDTO;
-import Product.Controller.ProductDTO.ProductFilterDTO;
+import product.controller.productDTO.ProductDTO;
+import product.controller.productDTO.ProductFilterDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

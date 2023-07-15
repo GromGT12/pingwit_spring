@@ -1,7 +1,7 @@
-package Product.Controller;
-import Product.Controller.ProductDTO.ProductDTO;
-import Product.Controller.ProductDTO.ProductFilterDTO;
-import Product.Service.ProductService;
+package product.controller;
+import product.controller.productDTO.ProductDTO;
+import product.controller.productDTO.ProductFilterDTO;
+import product.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
