@@ -3,15 +3,19 @@ package product.repository.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "order items")
+@Table(name = "order_items")
 public class OrderItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @ManyToOne
     private Order order;
+
     @ManyToOne
     private Product product;
+
     @Column(name = "quantity")
     private Integer quantity;
 
@@ -46,6 +50,4 @@ public class OrderItem {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
-
 }
-

@@ -6,7 +6,7 @@ import product.controller.productDTO.OrderDto;
 import product.convertor.OrderConverter;
 import product.exсeption.PingwitNotFoundExсeption;
 import product.repository.model.Order;
-import product.repository.model.OrderRepository;
+import product.repository.OrderRepository;
 
 import java.util.List;
 
