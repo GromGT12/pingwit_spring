@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class OrderDto {
     private Integer id;
-    private ProductDTO product;
+    private UserDTO user;
     private Date createdAt;
     private String comment;
     private List<OrderItemDto> orderItemDTOList = new ArrayList<>();
@@ -20,12 +20,12 @@ public class OrderDto {
         this.id = id;
     }
 
-    public ProductDTO getProduct() {
-        return product;
+    public UserDTO getUser() {
+        return user;
     }
 
-    public void setProduct(ProductDTO product) {
-        this.product = product;
+    public void setUser(UserDTO user) {
+        this.user = user;
     }
 
     public Date getCreatedAt() {
@@ -57,19 +57,19 @@ public class OrderDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderDto orderDto = (OrderDto) o;
-        return Objects.equals(id, orderDto.id) && Objects.equals(product, orderDto.product) && Objects.equals(createdAt, orderDto.createdAt) && Objects.equals(comment, orderDto.comment) && Objects.equals(orderItemDTOList, orderDto.orderItemDTOList);
+        return Objects.equals(id, orderDto.id) && Objects.equals(user, orderDto.user) && Objects.equals(createdAt, orderDto.createdAt) && Objects.equals(comment, orderDto.comment) && Objects.equals(orderItemDTOList, orderDto.orderItemDTOList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, product, createdAt, comment, orderItemDTOList);
+        return Objects.hash(id, user, createdAt, comment, orderItemDTOList);
     }
 
     @Override
     public String toString() {
         return "OrderDto{" +
                 "id=" + id +
-                ", product=" + product +
+                ", product=" + user +
                 ", createAt=" + createdAt +
                 ", comment='" + comment + '\'' +
                 ", orderItemDTOList=" + orderItemDTOList +

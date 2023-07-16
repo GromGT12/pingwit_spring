@@ -13,7 +13,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
-    private Product product;
+    private User user;
     @Column(name = "created_at")
     private Date createdAt;
     @Column(name = "comment")
@@ -34,12 +34,12 @@ public class Order {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
+    public User getUser() {
+        return user;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getCreatedAt() {

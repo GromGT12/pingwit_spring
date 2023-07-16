@@ -13,11 +13,11 @@ public class OrderConverter {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderConverter.class);
 
-    private final ProductConverter productConverter;
+    private final UserConverter userConverter;
     private final OrderItemConverter orderItemConverter;
 
-    public OrderConverter(ProductConverter productConverter, OrderItemConverter orderItemConverter) {
-        this.productConverter = productConverter;
+    public OrderConverter(UserConverter userConverter, OrderItemConverter orderItemConverter) {
+        this.userConverter = userConverter;
         this.orderItemConverter = orderItemConverter;
     }
 
@@ -34,7 +34,7 @@ public class OrderConverter {
 
     public Order convertToEntity(OrderDto source) {
         Order result = new Order();
-        result.setProduct(productConverter.convertToEntity(source.getProduct()));
+        result.setUser(userConverter.convertToEntity(source.getUser()));
         result.setOrderItemDTOList(orderItemConverter.convertToEntity(source.getOrderItemDTOList(), result));
         result.setCreatedAt(source.getCreatedAt());
         result.setComment(source.getComment());
@@ -45,7 +45,7 @@ public class OrderConverter {
         OrderDto target = new OrderDto();
         target.setId(source.getId());
         target.setCreatedAt(source.getCreatedAt());
-        target.setProduct(productConverter.convertToDto(source.getProduct()));
+        target.setUser(userConverter.convertToDto(source.getUser()));
         logger.debug("сейчас будем качать строчки заказа!------------------");
         target.setOrderItemDTOList(orderItemConverter.convertToDto(source.getOrderItemList()));
         target.setComment(source.getComment());
