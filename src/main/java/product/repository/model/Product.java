@@ -1,12 +1,6 @@
 package product.repository.model;
 
 import jakarta.persistence.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import product.SpringDemo;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "products")

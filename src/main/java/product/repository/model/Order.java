@@ -14,7 +14,7 @@ public class Order {
     private Integer id;
     @ManyToOne
     private Product product;
-    @Column(name = "created at")
+    @Column(name = "created_at")
     private Date createdAt;
     @Column(name = "comment")
     private String comment;
