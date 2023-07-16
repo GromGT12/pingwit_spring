@@ -2,44 +2,46 @@ package product.repository.model;
 
 import jakarta.persistence.*;
 
+/**
+ * @author Pavel Radkevich
+ * @since 8.06.23
+ */
 @Entity
 @Table(name = "users")
 public class User {
+    // POJO
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name = "name")
     private String name;
-    @Column(name = "description")
-    private String description;
-    @Column(name = "price")
-    private Double price;
+
+    @Column(name = "surname")
     private String surname;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "phone")
     private String phone;
 
     public User() {
     }
 
-    public User(String name, String description, Double price) {
+    public User(String name, String surname, String email, String phone) {
         this.name = name;
-        this.description = description;
-        this.price = price;
-    }
-
-    public User(Integer id, String name, String description, Double price) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
+        this.surname = surname;
+        this.email = email;
+        this.phone = phone;
     }
 
     public User(Integer id, String name, String surname, String email, String phone) {
-
-    }
-
-    public void Use(Integer id, String name, String surname, String email, String phone) {
-
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.phone = phone;
     }
 
     public Integer getId() {
@@ -58,29 +60,38 @@ public class User {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Override
     public String toString() {
-        return "product{" +
+        return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 }
