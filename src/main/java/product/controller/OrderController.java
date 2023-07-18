@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
-public class OrderController{
+public class OrderController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
 
@@ -19,6 +19,7 @@ public class OrderController{
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
+
     @GetMapping
     public List<OrderDto> getAllOrders() {
         return orderService.getAll();

@@ -1,10 +1,10 @@
 package product.controller.productDTO;
 
 public class OrderItemDto {
-private Integer id;
-private Integer orderId;
-private ProductDTO product;
-private Integer quantity;
+    private Integer id;
+    private Integer orderId;
+    private ProductDTO product;
+    private Integer quantity;
 
     public Integer getId() {
         return id;

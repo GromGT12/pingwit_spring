@@ -14,7 +14,6 @@ import product.repository.SpringDataUserRepository;
 import product.repository.model.User;
 import product.validator.UserValidator;
 
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -82,8 +81,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> search(UserFilterDTO filter) {
-            List<User> allByNameAndSurname = userRepository.findAllByNameAndSurname(filter.getName(), filter.getSurname());
-            return userConverter.convertToDto(allByNameAndSurname);
+        List<User> allByNameAndSurname = userRepository.findAllByNameAndSurname(filter.getName(), filter.getSurname());
+        return userConverter.convertToDto(allByNameAndSurname);
     }
 
 

@@ -1,11 +1,12 @@
 package product.controller;
-import product.controller.productDTO.ProductDTO;
-import product.controller.productDTO.ProductFilterDTO;
-import product.service.ProductService;
+
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+import product.controller.productDTO.ProductDTO;
+import product.controller.productDTO.ProductFilterDTO;
+import product.service.ProductService;
 
 import java.util.Collection;
 import java.util.List;
@@ -44,16 +45,19 @@ public class ProductController {
 
     @PostMapping
     public Integer createProduct(@RequestBody @Valid ProductDTO productToCreate) {
-        return productService.createProduct(productToCreate);}
+        return productService.createProduct(productToCreate);
+    }
 
     @PutMapping("/{id}")
     public ProductDTO update(@PathVariable Integer id, @RequestBody @Valid ProductDTO productToUpdate) {
-        return productService.updateProduct(id, productToUpdate);}
+        return productService.updateProduct(id, productToUpdate);
+    }
 
     @PostMapping("/search")
-    public List<ProductDTO> search(@RequestBody  ProductFilterDTO filter) {
+    public List<ProductDTO> search(@RequestBody ProductFilterDTO filter) {
         return productService.search(filter);
     }
+
     @GetMapping("/page")
     public Page<ProductDTO> getPaged(Pageable pageable) {
         return productService.getPage(pageable);

@@ -1,18 +1,18 @@
 package product.service;
 
-import product.controller.productDTO.ProductDTO;
-import product.controller.productDTO.ProductFilterDTO;
-import product.convertor.ProductConverter;
-import product.repository.PagingProductRepository;
-import product.repository.model.Product;
-import product.repository.SpringDataProductRepository;
-import product.exсeption.PingwitNotFoundExсeption;
-import product.validator.ProductValidator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import product.controller.productDTO.ProductDTO;
+import product.controller.productDTO.ProductFilterDTO;
+import product.convertor.ProductConverter;
+import product.exсeption.PingwitNotFoundExсeption;
+import product.repository.PagingProductRepository;
+import product.repository.SpringDataProductRepository;
+import product.repository.model.Product;
+import product.validator.ProductValidator;
 
 import java.util.Collection;
 import java.util.List;

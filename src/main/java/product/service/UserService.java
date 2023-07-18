@@ -5,7 +5,6 @@ import org.springframework.data.domain.Pageable;
 import product.controller.productDTO.UserDTO;
 import product.controller.productDTO.UserFilterDTO;
 
-
 import java.util.List;
 
 public interface UserService {
