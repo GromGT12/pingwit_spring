@@ -34,7 +34,7 @@ public class EmployeeConverter {
         EmployeeDTO result = new EmployeeDTO();
         result.setId(source.getId());
         result.setName(source.getName());
-        result.setShopId(source.getShop().getId);
+        result.setShopId(source.getShop().getId());
         result.setSurname(source.getSurname());
         result.setTitle(source.getTitle());
         return result;

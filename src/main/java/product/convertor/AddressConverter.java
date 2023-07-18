@@ -19,16 +19,16 @@ public class AddressConverter {
     }
 
     public AddressDTO convertToAddressDTO(Address source) {
-        return convertToAddressDTO(source);
+        return convertAddressToDto(source);
     }
 
     public List<AddressDTO> convertToAddressDTO(Collection<Address> source) {
         return source.stream()
-                .map(this::convertAddressToDTO)
+                .map(this::convertAddressToDto)
                 .collect(Collectors.toList());
     }
 
-    private AddressDTO convertAddressToDTO(Address source) {
+    private AddressDTO convertAddressToDto(Address source) {
         AddressDTO result = new AddressDTO();
         result.setId(source.getId());
         result.setCity(source.getCity());
